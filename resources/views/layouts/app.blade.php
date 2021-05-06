@@ -20,13 +20,13 @@
     </head>
     <body class="font-sans antialiased">
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-200">
 
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
-            
+
         </div>
 
         @stack('modals')
