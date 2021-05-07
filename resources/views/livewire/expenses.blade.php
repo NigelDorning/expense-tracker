@@ -4,7 +4,10 @@
 
     <!-- Modal -->
     <x-slot name="modalTrigger">
-        <x-jet-button wire:click="$set('showModal', true)">Add Expense</x-jet-button>
+        <div class="flex items-center space-x-2">
+            <x-jet-secondary-button wire:click="$set('showBreakdown', true)">View Breakdown</x-jet-secondary-button>
+            <x-jet-button wire:click="$set('showModal', true)">Add Expense</x-jet-button>
+        </div>
     </x-slot>
     
     <!-- Table -->
@@ -36,6 +39,13 @@
             @endforelse
         </x-slot>
     </x-table>
+
+    <!-- Breakdown Modal -->
+    <x-jet-modal wire:model="showBreakdown" maxWidth="6xl">
+
+        <livewire:chart :statements="$expenses" type="expense" />
+
+    </x-jet-modal>
 
     <!-- Modal -->
     <x-jet-dialog-modal wire:model="showModal">

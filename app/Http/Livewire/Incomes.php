@@ -7,7 +7,8 @@ use App\Models\Statement;
 
 class Incomes extends Component
 {
-    public $showModal;
+    public $showModal = false;
+    public $showBreakdown = false;
 
     public Statement $statement;
 
@@ -33,7 +34,7 @@ class Incomes extends Component
 
         $this->clear();
 
-        $this->emitUp('statementAdded');
+        $this->emit('statementAdded');
     }
 
     public function clear()

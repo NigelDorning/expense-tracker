@@ -7,7 +7,8 @@ use App\Models\Statement;
 
 class Expenses extends Component
 {
-    public $showModal;
+    public $showModal = false;
+    public $showBreakdown = false;
 
     public Statement $statement;
 

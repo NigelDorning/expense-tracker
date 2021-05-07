@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Chart;
 use App\Http\Livewire\ExpenseTracker;
 use Illuminate\Support\Facades\Route;
 
