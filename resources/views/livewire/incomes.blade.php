@@ -24,7 +24,7 @@
                 <tr>
                     <x-table.cell>{{ $income->category }}</x-table.cell>
                     <x-table.cell>£{{ $income->amount }}</x-table.cell>
-                    <x-table.cell>{{ $income->when }}</x-table.cell>
+                    <x-table.cell>{{ $income->when->format('d/m/Y') }}</x-table.cell>
                     <x-table.cell>
                         @if($income->recurring)
                             <x-icon name="refresh" class="w-5 h-5" />
