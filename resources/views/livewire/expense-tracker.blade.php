@@ -25,4 +25,8 @@
     
     </div>
 
+    <livewire:incomes />
+
+    <livewire:expenses />
+
 </div>

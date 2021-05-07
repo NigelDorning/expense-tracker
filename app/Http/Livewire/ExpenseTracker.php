@@ -9,7 +9,14 @@ class ExpenseTracker extends Component
 {
     public $statements = [];
 
+    protected $listeners = ['statementAdded' => 'getStatements'];
+
     public function mount()
+    {
+        $this->getStatements();
+    }
+
+    public function getStatements()
     {
         $this->statements = Statement::whereMonth('when', now()->format('m'))->get();
     }
