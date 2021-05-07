@@ -29,7 +29,7 @@ class Chart extends Component
 
                 return $chart->addSlice($category, $value, '#10B981');
             }, LivewireCharts::pieChartModel()
-                ->setTitle($this->type . ' Breakdown')
+                ->setTitle(ucfirst($this->type) . ' Breakdown')
                 ->setAnimated($this->firstRun)
         );
 
