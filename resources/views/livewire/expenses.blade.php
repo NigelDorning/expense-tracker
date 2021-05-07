@@ -22,7 +22,7 @@
         <x-slot name="tbody">
             @forelse($expenses as $expense)
                 <tr>
-                    <x-table.cell>{{ $expense->category }}</x-table.cell>
+                    <x-table.cell class="w-1/4">{{ $expense->category }}</x-table.cell>
                     <x-table.cell>£{{ $expense->amount }}</x-table.cell>
                     <x-table.cell>{{ $expense->when->format('d/m/Y') }}</x-table.cell>
                     <x-table.cell>
