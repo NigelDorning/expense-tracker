@@ -8,7 +8,6 @@ use App\Models\Statement;
 class Incomes extends Component
 {
     public $showModal = false;
-    public $showBreakdown = false;
 
     public Statement $statement;
 

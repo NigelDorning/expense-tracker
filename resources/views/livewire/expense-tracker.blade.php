@@ -29,4 +29,12 @@
 
     <livewire:expenses />
 
+    <div class="grid grid-cols-2 gap-5">
+
+        <livewire:chart :statements="$statements->where('type', 'income')" />
+
+        <livewire:chart :statements="$statements->where('type', 'expense')" type="expense" />
+    
+    </div>
+
 </div>
