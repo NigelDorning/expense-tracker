@@ -10,6 +10,7 @@ class Statements extends Component
     public Statement $statement;
 
     public $showModal = false;
+    public $confirmingStatementDeletion = false;
     public $type = 'income';
 
     protected $rules = [
@@ -57,10 +58,26 @@ class Statements extends Component
         $this->emit('statementAdded');
     }
 
+    public function confirmStatementDeletion(Statement $statement)
+    {
+        $this->fill([
+            'confirmingStatementDeletion' => true,
+            'statement' => $statement
+        ]);
+    }
+
+    public function delete()
+    {
+        $this->statement->delete();
+
+        $this->clear();
+    }
+
     public function clear()
     {
         $this->fill([
             'showModal' => false,
+            'confirmingStatementDeletion' => false,
             'statement' => $this->emptyStatement()
         ]);
     }

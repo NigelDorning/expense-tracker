@@ -34,6 +34,7 @@
                     <x-table.cell>
                         <div class="flex items-center space-x-2">
                             <x-jet-secondary-button wire:click="edit({{ $statement->id }})">Edit</x-jet-secondary-button>
+                            <x-jet-danger-button wire:click="confirmStatementDeletion({{ $statement->id }})">Delete</x-jet-danger-button>
                         </div>
                     </x-table.cell>
                 </tr>
@@ -92,5 +93,26 @@
         </x-slot>
 
     </x-jet-dialog-modal>
+
+    <!-- Delete Modal -->
+    <x-jet-confirmation-modal wire:model="confirmingStatementDeletion">
+
+        <x-slot name="title">Delete Statement</x-slot>
+
+        <x-slot name="content">
+            <p>Are you sure you want to delete this statement?</p>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('confirmingStatementDeletion')" wire:loading.attr="disabled">
+                Cancel
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="delete" wire:loading.attr="disabled">
+                Delete
+            </x-jet-danger-button>
+        </x-slot>
+
+    </x-jet-confirmation-modal>
 
 </x-panel>
