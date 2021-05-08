@@ -19,7 +19,7 @@
     </head>
     <body class="font-sans antialiased">
 
-        <div class="min-h-screen bg-gray-200">
+        <div class="min-h-screen bg-gray-200 text-gray-700">
 
             <!-- Page Content -->
             <main>
