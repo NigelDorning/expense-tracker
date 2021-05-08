@@ -21,6 +21,8 @@ class CreateStatementsTable extends Migration
             $table->date('when');
             $table->float('amount');
             $table->boolean('recurring')->nullable()->default(false);
+            $table->string('recurring_schedule')->nullable();
+            $table->date('recurring_next')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

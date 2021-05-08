@@ -19,6 +19,10 @@ class Statement extends Model
         'user_id'
     ];
 
+    protected $casts = [
+        'recurring_next' => 'date'
+    ];
+
     const STATEMENT_TYPES = [
         'income' => [
             'Salary',
@@ -57,11 +61,32 @@ class Statement extends Model
         $this->attributes['when'] = is_null($value) 
             ? null
             : Carbon::createFromFormat('d/m/Y', $value)->toDateString();
-        ray($this->attributes['when']);
     }
 
     public function getWhenAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::saving(function ($statement) {
+            $date = Carbon::createFromFormat('d/m/Y', $statement->when);
+
+            $statement->recurring_next = match ($statement->recurring_schedule) {
+                'daily' => $date->addDay(),
+                'weekly' => $date->addWeek(),
+                'monthly' => $date->addMonth(),
+                'quarterly' => $date->addMonths(3),
+                'biannually' => $date->addMonths(6),
+                'yearly' => $date->addYear(),
+                default => null
+            };
+        });
     }
 }

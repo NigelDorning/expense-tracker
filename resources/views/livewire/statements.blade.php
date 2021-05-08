@@ -21,7 +21,7 @@
             @forelse($statements as $statement)
                 <tr>
                     <x-table.cell class="w-1/5">{{ $statement->category }}</x-table.cell>
-                    <x-table.cell class="w-1/5">{{ $statement->note }}</x-table.cell>
+                    <x-table.cell class="w-1/5">{{ $statement->note ?? '--' }}</x-table.cell>
                     <x-table.cell>£{{ $statement->amount }}</x-table.cell>
                     <x-table.cell>{{ $statement->when }}</x-table.cell>
                     <x-table.cell>
@@ -84,6 +84,19 @@
                 <x-jet-label for="{{ $type }}-recurring">Recurring?</x-jet-label>
                 <x-jet-checkbox id="{{ $type }}-recurring" wire:model="statement.recurring" />
                 <x-jet-input-error for="{{ $type }}-recurring" class="mt-2" />
+            </div>
+            
+            <div x-data="{ show: @entangle('statement.recurring') }" x-show.transition.opacity="show" x-cloak>
+                <x-jet-label for="{{ $type }}-category">Schedule</x-jet-label>
+                <x-input.select id="{{ $type }}-category" wire:model="statement.recurring_schedule">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="quarterly">Quarterly</option>
+                    <option value="biannually">Biannually</option>
+                    <option value="yearly">Yearly</option>
+                </x-input.select>
+                <x-jet-input-error for="{{ $type }}-category" class="mt-2" />
             </div>
 
         </x-slot>

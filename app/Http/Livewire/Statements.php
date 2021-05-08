@@ -19,6 +19,7 @@ class Statements extends Component
         'statement.amount' => 'required|numeric',
         'statement.when' => 'required',
         'statement.recurring' => 'nullable',
+        'statement.recurring_schedule' => 'nullable',
         'statement.type' => 'required',
         'statement.user_id' => 'required',
     ];
@@ -88,7 +89,8 @@ class Statements extends Component
     {
         return Statement::make([
             'type' => $this->type,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'when' => now()->format('d/m/Y')
         ]);
     }
 
