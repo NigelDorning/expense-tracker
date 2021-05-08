@@ -32,7 +32,7 @@
                         @endif
                     </x-table.cell>
                     <x-table.cell>
-                        <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-2 justify-end">
                             <x-jet-secondary-button wire:click="edit({{ $statement->id }})">Edit</x-jet-secondary-button>
                             <x-jet-danger-button wire:click="confirmStatementDeletion({{ $statement->id }})">Delete</x-jet-danger-button>
                         </div>
