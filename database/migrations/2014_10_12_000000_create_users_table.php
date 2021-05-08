@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
+            $table->float('yearly_savings_target')->nullable()->default(0);
+            $table->float('yearly_savings_current')->nullable()->default(0);
             $table->timestamps();
         });
     }

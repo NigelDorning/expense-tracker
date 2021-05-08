@@ -25,6 +25,8 @@
     
     </div>
 
+    <livewire:savings-goal />
+
     <livewire:incomes />
 
     <livewire:expenses />

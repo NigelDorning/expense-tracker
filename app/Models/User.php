@@ -58,4 +58,25 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getSavingsPercentageAttribute()
+    {
+        if (
+            $this->yearly_savings_current > 0 
+            && $this->yearly_savings_target > 0
+        ) {
+            $percent = ($this->yearly_savings_target - $this->yearly_savings_current) / $this->yearly_savings_target * 100;
+            return number_format(abs(100 - $percent), 2);
+        } elseif (
+            $this->yearly_savings_current == 0
+            || $this->yearly_savings_current < 0
+        ) {
+            return 0;
+        } elseif (
+            $this->yearly_savings_current > 0
+            && $this->yearly_savings_target == 0
+        ) {
+            return 100;
+        }
+    }
 }
