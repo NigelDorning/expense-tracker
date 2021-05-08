@@ -4,7 +4,7 @@
 
     <!-- Modal -->
     <x-slot name="modalTrigger">
-        <x-jet-button wire:click="$set('showModal', true)">Add {{ ucfirst($type) }}</x-jet-button>
+        <x-jet-button wire:click="create">Add {{ ucfirst($type) }}</x-jet-button>
     </x-slot>
     
     <!-- Table -->

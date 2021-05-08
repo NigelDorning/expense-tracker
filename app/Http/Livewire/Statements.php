@@ -29,6 +29,14 @@ class Statements extends Component
         ]);
     }
 
+    public function create()
+    {
+        $this->fill([
+            'showModal' => true,
+            'statement' => $this->emptyStatement()
+        ]);
+    }
+
     public function edit(Statement $statement)
     {
         $this->fill([
@@ -61,8 +69,7 @@ class Statements extends Component
         return Statement::make([
             'type' => $this->type,
             'user_id' => auth()->user()->id,
-            'when' => now(),
-            'recurring' => false
+            'when' => now()
         ]);
     }
 
