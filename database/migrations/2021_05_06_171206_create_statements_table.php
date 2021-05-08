@@ -17,9 +17,10 @@ class CreateStatementsTable extends Migration
             $table->id();
             $table->string('type');
             $table->string('category');
+            $table->string('note')->nullable();
             $table->date('when');
-            $table->integer('amount');
-            $table->boolean('recurring')->default(false);
+            $table->float('amount');
+            $table->boolean('recurring')->nullable()->default(false);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
