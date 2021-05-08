@@ -11,6 +11,7 @@
     <x-table>
         <x-slot name="thead">
             <x-table.heading>Category</x-table.heading>
+            <x-table.heading>Note</x-table.heading>
             <x-table.heading>Amount</x-table.heading>
             <x-table.heading>When</x-table.heading>
             <x-table.heading>Recurring</x-table.heading>
@@ -19,7 +20,8 @@
         <x-slot name="tbody">
             @forelse($statements as $statement)
                 <tr>
-                    <x-table.cell class="w-1/4">{{ $statement->category }}</x-table.cell>
+                    <x-table.cell class="w-1/5">{{ $statement->category }}</x-table.cell>
+                    <x-table.cell class="w-1/5">{{ $statement->note }}</x-table.cell>
                     <x-table.cell>£{{ $statement->amount }}</x-table.cell>
                     <x-table.cell>{{ $statement->when->format('d/m/Y') }}</x-table.cell>
                     <x-table.cell>
@@ -57,6 +59,12 @@
                     @endforeach
                 </x-input.select>
                 <x-jet-input-error for="{{ $type }}-category" class="mt-2" />
+            </div>
+
+            <div>
+                <x-jet-label for="{{ $type }}-amount">Note</x-jet-label>
+                <x-jet-input id="{{ $type }}-amount" wire:model="statement.note" />
+                <x-jet-input-error for="{{ $type }}-amount" class="mt-2" />
             </div>
 
             <div>
