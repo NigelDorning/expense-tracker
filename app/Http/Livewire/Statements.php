@@ -29,6 +29,14 @@ class Statements extends Component
         ]);
     }
 
+    public function edit(Statement $statement)
+    {
+        $this->fill([
+            'showModal' => true,
+            'statement' => $statement
+        ]);
+    }
+
     public function save()
     {
         $this->validate();

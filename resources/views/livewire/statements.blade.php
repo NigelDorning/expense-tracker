@@ -29,7 +29,11 @@
                             <span>--</span>
                         @endif
                     </x-table.cell>
-                    <x-table.cell></x-table.cell>
+                    <x-table.cell>
+                        <div class="flex items-center space-x-2">
+                            <x-jet-secondary-button wire:click="edit({{ $statement->id }})">Edit</x-jet-secondary-button>
+                        </div>
+                    </x-table.cell>
                 </tr>
             @empty 
                 <x-table.cell colspan="5" class="text-center">No {{ ucfirst($type) }}s</x-table.cell>
@@ -76,7 +80,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-button wire:click="save">Add</x-jet-button>
+            <x-jet-button wire:click="save">Save</x-jet-button>
         </x-slot>
 
     </x-jet-dialog-modal>
