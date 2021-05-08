@@ -76,7 +76,7 @@
 
             <div>
                 <x-jet-label for="{{ $type }}-when">When</x-jet-label>
-                <x-jet-input id="{{ $type }}-when" wire:model="statement.when" type="number" />
+                <x-input.datepicker id="{{ $type }}-when" wire:model="statement.when" type="number" />
                 <x-jet-input-error for="{{ $type }}-when" class="mt-2" />
             </div>
 
