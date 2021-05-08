@@ -14,7 +14,7 @@ class Statements extends Component
 
     protected $rules = [
         'statement.category' => 'required',
-        'statement.note' => 'nullable',
+        'statement.note' => 'nullable|max:200',
         'statement.amount' => 'required|numeric',
         'statement.when' => 'required',
         'statement.recurring' => 'nullable',
