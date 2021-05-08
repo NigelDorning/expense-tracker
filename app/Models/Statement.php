@@ -22,34 +22,36 @@ class Statement extends Model
         'when' => 'date'
     ];
 
-    const INCOME_TYPES = [
-        'Salary',
-        'Profit',
-        'Interest',
-        'Dividend',
-        'Rental',
-        'Capital Gains',
-        'Royalty',
-        'Residual'
-    ];
+    const STATEMENT_TYPES = [
+        'income' => [
+            'Salary',
+            'Profit',
+            'Interest',
+            'Dividend',
+            'Rental',
+            'Capital Gains',
+            'Royalty',
+            'Residual'
+        ],
 
-    const EXPENSE_TYPES = [
-        'Housing',
-        'Transportation',
-        'Food',
-        'Utilities',
-        'Medical/Healthcare',
-        'Insurance',
-        'Taxes',
-        'Education/Childcare',
-        'Debt',
-        'Household Items/Supplies',
-        'Personal Care',
-        'Clothing',
-        'Entertainment/Subscriptions',
-        'Travel',
-        'Pets',
-        'Gifts/Donations',
-        'Miscellaneous',
+        'expense' => [
+            'Housing',
+            'Transportation',
+            'Food',
+            'Utilities',
+            'Medical/Healthcare',
+            'Insurance',
+            'Taxes',
+            'Education/Childcare',
+            'Debt',
+            'Household Items/Supplies',
+            'Personal Care',
+            'Clothing',
+            'Entertainment/Subscriptions',
+            'Travel',
+            'Pets',
+            'Gifts/Donations',
+            'Miscellaneous',
+        ]
     ];
 }

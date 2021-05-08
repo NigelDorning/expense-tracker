@@ -27,9 +27,9 @@
 
     <livewire:savings-goal />
 
-    <livewire:incomes />
+    <livewire:statements />
 
-    <livewire:expenses />
+    <livewire:statements type="expense" />
 
     <div class="grid grid-cols-2 gap-5">
 

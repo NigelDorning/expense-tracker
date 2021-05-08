@@ -5,24 +5,28 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Statement;
 
-class Incomes extends Component
+class Statements extends Component
 {
-    public $showModal = false;
-
     public Statement $statement;
+
+    public $showModal = false;
+    public $type = 'income';
 
     protected $rules = [
         'statement.category' => 'required',
         'statement.amount' => 'required|integer',
         'statement.when' => 'required',
         'statement.recurring' => 'nullable',
-        'statement.type' => '',
-        'statement.user_id' => '',
+        'statement.type' => 'required',
+        'statement.user_id' => 'required',
     ];
 
-    public function mount()
+    public function mount($type = 'income')
     {
-        $this->statement = $this->emptyStatement();
+        $this->fill([
+            'type' => $type,
+            'statement' => $this->emptyStatement()
+        ]);
     }
 
     public function save()
@@ -38,15 +42,16 @@ class Incomes extends Component
 
     public function clear()
     {
-        $this->statement = $this->emptyStatement();
-
-        $this->showModal = false;
+        $this->fill([
+            'showModal' => false,
+            'statement' => $this->emptyStatement()
+        ]);
     }
 
     public function emptyStatement()
     {
         return Statement::make([
-            'type' => 'income',
+            'type' => $this->type,
             'user_id' => auth()->user()->id,
             'when' => now(),
             'recurring' => false
@@ -55,8 +60,10 @@ class Incomes extends Component
 
     public function render()
     {
-        return view('livewire.incomes', [
-            'incomes' => Statement::whereMonth('when', now()->format('m'))->whereType('income')->get()
+        return view('livewire.statements', [
+            'statements' => Statement::whereMonth('when', now()->format('m'))
+                ->whereType($this->type)
+                ->get()
         ]);
     }
 }
