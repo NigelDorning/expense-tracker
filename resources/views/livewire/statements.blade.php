@@ -23,7 +23,7 @@
                     <x-table.cell class="w-1/5">{{ $statement->category }}</x-table.cell>
                     <x-table.cell class="w-1/5">{{ $statement->note }}</x-table.cell>
                     <x-table.cell>£{{ $statement->amount }}</x-table.cell>
-                    <x-table.cell>{{ $statement->when->format('d/m/Y') }}</x-table.cell>
+                    <x-table.cell>{{ $statement->when }}</x-table.cell>
                     <x-table.cell>
                         @if($statement->recurring)
                             <x-icon name="refresh" class="w-5 h-5" />

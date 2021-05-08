@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Statement extends Model
 {
@@ -16,10 +17,6 @@ class Statement extends Model
         'when',
         'recurring',
         'user_id'
-    ];
-
-    protected $casts = [
-        'when' => 'date'
     ];
 
     const STATEMENT_TYPES = [
@@ -54,4 +51,17 @@ class Statement extends Model
             'Miscellaneous',
         ]
     ];
+
+    public function setWhenAttribute($value)
+    {
+        $this->attributes['when'] = is_null($value) 
+            ? null
+            : Carbon::createFromFormat('d/m/Y', $value)->toDateString();
+        ray($this->attributes['when']);
+    }
+
+    public function getWhenAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
 }

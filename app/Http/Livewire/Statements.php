@@ -88,8 +88,7 @@ class Statements extends Component
     {
         return Statement::make([
             'type' => $this->type,
-            'user_id' => auth()->user()->id,
-            'when' => now()
+            'user_id' => auth()->user()->id
         ]);
     }
 
