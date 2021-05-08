@@ -9,7 +9,7 @@ class ExpenseTracker extends Component
 {
     public $statements = [];
 
-    protected $listeners = ['statementAdded' => 'getStatements'];
+    protected $listeners = ['statementUpdated' => 'getStatements'];
 
     public function mount()
     {

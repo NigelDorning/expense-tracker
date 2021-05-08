@@ -55,7 +55,7 @@ class Statements extends Component
 
         $this->clear();
 
-        $this->emit('statementAdded');
+        $this->emit('statementUpdated');
     }
 
     public function confirmStatementDeletion(Statement $statement)
@@ -71,6 +71,8 @@ class Statements extends Component
         $this->statement->delete();
 
         $this->clear();
+
+        $this->emit('statementUpdated');
     }
 
     public function clear()
