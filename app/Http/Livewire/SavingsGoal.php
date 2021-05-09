@@ -5,11 +5,6 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\SavingsGoal as Goal;
 
-/**
- * Allow for a savings goal per year. Currently this only has one savings goal
- * on a user. Whereas we want one per year.
- */
-
 class SavingsGoal extends Component
 {
     public $showModal = false;
