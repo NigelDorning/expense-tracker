@@ -4,7 +4,10 @@
 
     <!-- Modal -->
     <x-slot name="modalTrigger">
-        <x-jet-button wire:click="create">Add {{ ucfirst($type) }}</x-jet-button>
+        <div class="inline-flex items-center space-x-2">
+            <x-dropdown wire:model="viewAmount" />
+            <x-jet-button wire:click="create">Add {{ ucfirst($type) }}</x-jet-button>
+        </div>
     </x-slot>
     
     <!-- Table -->

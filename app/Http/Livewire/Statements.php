@@ -15,7 +15,7 @@ class Statements extends Component
     public $showModal = false;
     public $confirmingStatementDeletion = false;
     public $type = 'income';
-    public $viewAmount = 1;
+    public $viewAmount = 10;
 
     protected $rules = [
         'statement.category' => 'required',
