@@ -6,7 +6,7 @@
             year: $sprucewire.entangle('year')
         })
     "
-    class="max-w-6xl mx-auto py-10 space-y-10"
+    class="max-w-6xl mx-auto py-5 md:py-10 space-y-5 md:space-y-10"
 >
 
     <div class="flex items-center justify-end space-x-2">
@@ -16,7 +16,7 @@
         </div>
     </div>
     
-    <div class="grid grid-cols-3 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10">
 
         <x-panel>
             <x-slot name="title">Total Income</x-slot>
@@ -47,7 +47,7 @@
 
     <livewire:statements type="expense" />
 
-    <div class="grid grid-cols-2 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
 
         <livewire:chart :statements="$statements->where('type', 'income')" />
 

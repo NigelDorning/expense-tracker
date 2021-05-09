@@ -25,7 +25,7 @@
     </head>
     <body class="font-sans antialiased">
 
-        <div class="min-h-screen bg-gray-200 text-gray-700">
+        <div class="min-h-screen bg-gray-200 text-gray-700 p-5 md:p-0">
 
             <!-- Page Content -->
             <main>
