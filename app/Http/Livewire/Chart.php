@@ -12,12 +12,21 @@ class Chart extends Component
     public $statements;
     public $firstRun = true;
 
+    protected $listeners = ['statementUpdated' => 'getStatements'];
+
     public function mount($statements, $type = 'income')
     {
         $this->fill([
             'statements' => $statements,
             'type' => $type
         ]);
+    }
+
+    public function getStatements()
+    {
+        $this->statements = Statement::whereMonth('when', now()->format('m'))
+            ->whereType($this->type)    
+            ->get();
     }
 
     public function render()
