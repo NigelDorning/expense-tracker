@@ -22,7 +22,7 @@ class StatementFactory extends Factory
     public function definition()
     {
         return [
-            'type' => 'income',
+            'type' => $this->faker->randomElement(['income', 'expense']),
             'category' => 'wages',
             'when' => now(),
             'amount' => '2000',

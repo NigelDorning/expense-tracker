@@ -128,4 +128,10 @@
 
     </x-jet-confirmation-modal>
 
+    @if($statements->hasPages())
+        <x-slot name="footer">
+            {{ $statements->links() }}
+        </x-slot>
+    @endif
+
 </x-panel>

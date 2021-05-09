@@ -4,14 +4,18 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Statement;
+use Livewire\WithPagination;
 
 class Statements extends Component
 {
+    use WithPagination;
+
     public Statement $statement;
 
     public $showModal = false;
     public $confirmingStatementDeletion = false;
     public $type = 'income';
+    public $viewAmount = 1;
 
     protected $rules = [
         'statement.category' => 'required',
@@ -100,7 +104,7 @@ class Statements extends Component
             'statements' => Statement::whereMonth('when', now()->format('m'))
                 ->whereType($this->type)
                 ->latest()
-                ->get()
+                ->paginate($this->viewAmount)
         ]);
     }
 }

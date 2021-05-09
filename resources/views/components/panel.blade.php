@@ -18,4 +18,10 @@
 
     {{ $slot }}
 
+    @if(isset($footer))
+        <footer class="px-5 py-3 border-t">
+            {{ $footer }}
+        </footer>
+    @endif
+
 </div>
