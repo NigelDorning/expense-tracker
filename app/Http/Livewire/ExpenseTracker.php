@@ -26,7 +26,7 @@ class ExpenseTracker extends Component
         $this->getStatements();
     }
 
-    public function updatedMonth($value)
+    public function updated($value)
     {
         $this->getStatements();
     }
