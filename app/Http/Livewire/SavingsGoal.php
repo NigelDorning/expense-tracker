@@ -5,46 +5,81 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\SavingsGoal as Goal;
 
+/**
+ * Allow for a savings goal per year. Currently this only has one savings goal
+ * on a user. Whereas we want one per year.
+ */
+
 class SavingsGoal extends Component
 {
     public $showModal = false;
     public $showSavingsModal = false;
-    public $target;
-    public $savings;
-    public $savingsType = 'deposit';
+    public $year;
+
+    public $savingsGoal;
+
+    public $updateSavings;
+    public $updateSavingsType = 'deposit';
+
+    protected $rules = [
+        'savingsGoal.for_year' => 'required',
+        'savingsGoal.target' => 'required',
+        'savingsGoal.current' => 'required',
+        'savingsGoal.user_id' => 'required',
+    ];
 
     public function mount()
     {
-        $this->setTarget();
+        $this->year = now()->format('Y');
+
+        $this->setSavingsGoal();
     }
 
-    public function setTarget()
+    public function updatedYear()
     {
-        $this->target = auth()->user()->yearly_savings_target;
+        $this->setSavingsGoal();
+    }
+
+    public function setSavingsGoal()
+    {
+        $goal = auth()
+            ->user()
+            ->yearlySavingsGoal()
+            ->whereForYear($this->year)
+            ->first();
+
+        $this->savingsGoal = $goal
+            ? $goal
+            : $this->makeEmptySavingsGoal();
     }
 
     public function updateYearlySavingsTarget()
     {
-        auth()->user()->yearly_savings_target = $this->target;
-
-        auth()->user()->save();
+        $this->savingsGoal->save();
 
         $this->showModal = false;
     }
 
     public function updateYearlySavingsCurrent()
     {
-        $this->savingsType === 'deposit'
-            ? auth()->user()->yearly_savings_current += $this->savings
-            : auth()->user()->yearly_savings_current -= $this->savings;
+        $this->updateSavingsType === 'deposit'
+            ? $this->savingsGoal->current += $this->updateSavings
+            : $this->savingsGoal->current -= $this->updateSavings;
 
-        auth()->user()->save();
+        $this->savingsGoal->save();
 
         $this->showSavingsModal = false;
 
-        $this->savings = 0;
+        $this->updateSavings = '';
     }
 
+    public function makeEmptySavingsGoal()
+    {
+        return Goal::make([
+            'for_year' => $this->year,
+            'user_id' => auth()->user()->id
+        ]);
+    }
 
     public function render()
     {
