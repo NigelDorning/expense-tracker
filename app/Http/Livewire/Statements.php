@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Statement;
 use Livewire\WithPagination;
@@ -16,6 +17,8 @@ class Statements extends Component
     public $confirmingStatementDeletion = false;
     public $type = 'income';
     public $viewAmount = 10;
+    public $month;
+    public $year;
 
     protected $rules = [
         'statement.category' => 'required',
@@ -100,8 +103,11 @@ class Statements extends Component
 
     public function render()
     {
+        $month = Carbon::parse($this->month)->format('m');
+
         return view('livewire.statements', [
-            'statements' => Statement::whereMonth('when', now()->format('m'))
+            'statements' => Statement::whereMonth('when', $month)
+                ->whereYear('when', $this->year)
                 ->whereType($this->type)
                 ->latest()
                 ->paginate($this->viewAmount)

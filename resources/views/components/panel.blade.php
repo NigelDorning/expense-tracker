@@ -2,7 +2,7 @@
     'hasHeader' => true
 ])
 
-<div class="bg-white rounded-lg">
+<div {{ $attributes->merge(['class' => 'bg-white rounded-lg']) }}>
 
     @if($hasHeader)
 

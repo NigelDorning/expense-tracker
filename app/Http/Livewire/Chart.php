@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Statement;
 use Asantibanez\LivewireCharts\Facades\LivewireCharts;
@@ -10,6 +11,8 @@ class Chart extends Component
 {
     public $type = 'income';
     public $statements;
+    public $month;
+    public $year;
     public $firstRun = true;
 
     protected $listeners = ['statementUpdated' => 'getStatements'];
@@ -22,9 +25,17 @@ class Chart extends Component
         ]);
     }
 
+    public function updated()
+    {
+        $this->getStatements();
+    }
+
     public function getStatements()
     {
-        $this->statements = Statement::whereMonth('when', now()->format('m'))
+        $month = Carbon::parse($this->month)->format('m');
+
+        $this->statements = Statement::whereMonth('when', $month)
+            ->whereYear('when', $this->year)
             ->whereType($this->type)    
             ->get();
     }

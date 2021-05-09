@@ -1,11 +1,19 @@
-<x-panel>
+<x-panel
+    x-data="" 
+    x-init="
+        $sprucewire.loadStore('main', {
+            month: $sprucewire.entangle('month'),
+            year: $sprucewire.entangle('year')
+        })
+    "
+>
     <!-- Title -->
     <x-slot name="title">{{ ucfirst($type) }}s</x-slot>
 
     <!-- Modal -->
     <x-slot name="modalTrigger">
         <div class="inline-flex items-center space-x-2">
-            <x-dropdown wire:model="viewAmount" />
+            <x-dropdown.view-amount wire:model="viewAmount" />
             <x-jet-button wire:click="create">Add {{ ucfirst($type) }}</x-jet-button>
         </div>
     </x-slot>

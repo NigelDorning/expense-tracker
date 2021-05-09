@@ -2,23 +2,43 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Statement;
 
 class ExpenseTracker extends Component
 {
     public $statements = [];
+    public $month;
+    public $year;
 
     protected $listeners = ['statementUpdated' => 'getStatements'];
 
     public function mount()
+    {
+        $date = now();
+
+        $this->fill([
+            'month' => $date->format('F'),
+            'year' => $date->format('Y')
+        ]);
+
+        $this->getStatements();
+    }
+
+    public function updatedMonth($value)
     {
         $this->getStatements();
     }
 
     public function getStatements()
     {
-        $this->statements = Statement::whereMonth('when', now()->format('m'))->get();
+        $month = Carbon::parse($this->month)->format('m');
+
+        $this->statements = Statement::whereMonth('when', $month)
+            ->whereYear('when', $this->year)
+            ->latest()
+            ->get();
     }
 
     /**
