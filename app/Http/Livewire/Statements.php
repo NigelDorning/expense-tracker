@@ -99,6 +99,7 @@ class Statements extends Component
         return view('livewire.statements', [
             'statements' => Statement::whereMonth('when', now()->format('m'))
                 ->whereType($this->type)
+                ->latest()
                 ->get()
         ]);
     }
