@@ -66,7 +66,7 @@
 
             <div>
                 <x-jet-label for="{{ $type }}-category">Category</x-jet-label>
-                <x-input.select id="{{ $type }}-category" wire:model="statement.category">
+                <x-input.select id="{{ $type }}-category" wire:model.defer="statement.category">
                     <option value="">-- Select {{ ucfirst($type) }} Category --</option>
                     @foreach(App\Models\Statement::STATEMENT_TYPES[$type] as $type)
                         <option value="{{ $type }}">{{ $type }}</option>
@@ -77,13 +77,13 @@
 
             <div>
                 <x-jet-label for="{{ $type }}-amount">Note</x-jet-label>
-                <x-jet-input id="{{ $type }}-amount" wire:model="statement.note" />
+                <x-jet-input id="{{ $type }}-amount" wire:model.defer="statement.note" />
                 <x-jet-input-error for="{{ $type }}-amount" class="mt-2" />
             </div>
 
             <div>
                 <x-jet-label for="{{ $type }}-amount">Amount</x-jet-label>
-                <x-jet-input id="{{ $type }}-amount" wire:model="statement.amount" type="number" />
+                <x-jet-input id="{{ $type }}-amount" wire:model.defer="statement.amount" type="number" />
                 <x-jet-input-error for="{{ $type }}-amount" class="mt-2" />
             </div>
 
@@ -101,7 +101,7 @@
             
             <div x-data="{ show: @entangle('statement.recurring') }" x-show.transition.opacity="show" x-cloak>
                 <x-jet-label for="{{ $type }}-category">Schedule</x-jet-label>
-                <x-input.select id="{{ $type }}-category" wire:model="statement.recurring_schedule">
+                <x-input.select id="{{ $type }}-category" wire:model.defer="statement.recurring_schedule">
                     <option value="daily">Daily</option>
                     <option value="weekly">Weekly</option>
                     <option value="monthly">Monthly</option>
