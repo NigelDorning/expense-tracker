@@ -56,5 +56,9 @@
                 </x-jet-button>
             </div>
         </form>
+
+        <x-slot name="bottomLink">
+            <p class="mt-5"><a href="{{ route('login') }}" class="ml-4 text-sm text-gray-700 underline">Login</a></p>
+        </x-slot>
     </x-jet-authentication-card>
 </x-guest-layout>
