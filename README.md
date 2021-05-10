@@ -10,7 +10,7 @@ A simple expense tracker built on the TALL stack.
 
 * Track incomes & expenses
 * Set a yearly savings goal
-* Create recurring expenses
+* Create recurring statements
 
 ---
 
