@@ -25,6 +25,8 @@
     </head>
     <body class="font-sans antialiased">
 
+        <livewire:navigation-menu />
+
         <div class="min-h-screen bg-gray-200 text-gray-700 p-5 md:p-0">
 
             <!-- Page Content -->
